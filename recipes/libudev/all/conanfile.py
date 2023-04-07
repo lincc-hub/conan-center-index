@@ -37,7 +37,8 @@ class LibUDEVConan(ConanFile):
         pacman.install(["systemd-libs"], update=True, check=True)
 
         zypper = package_manager.Zypper(self)
-        zypper.install(["libudev-devel"], update=True, check=True)
+        zypper.install_substitutes(["systemd-devel", "libudev-devel"],
+                                   update=True, check=True)
 
     def package_info(self):
         self.cpp_info.includedirs = []
